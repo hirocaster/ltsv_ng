@@ -4,6 +4,7 @@ describe "LtsvNg::Logger" do
   before do
     @output = StringIO.new
     @logger = LtsvNg::Logger.new(@output)
+    allow(SecureRandom).to receive(:uuid).and_return("b746d58e-e4c0-4f2b-86fd-f8ff78131745")
   end
 
   describe "#formatter" do
@@ -19,6 +20,7 @@ describe "LtsvNg::Logger" do
       @output.seek(0)
       ltsv = @output.read.strip.split("\t")
       expect(ltsv).to include("level:INFO")
+      expect(ltsv).to include("uuid:b746d58e-e4c0-4f2b-86fd-f8ff78131745")
       expect(ltsv).to include("msg:Test")
     end
 
@@ -28,6 +30,7 @@ describe "LtsvNg::Logger" do
       ltsv = @output.read.strip.split("\t")
       expect(ltsv).to include("level:INFO")
       expect(ltsv).to include("id:123")
+      expect(ltsv).to include("uuid:b746d58e-e4c0-4f2b-86fd-f8ff78131745")
       expect(ltsv).to include("name:foobar")
     end
   end

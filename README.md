@@ -40,8 +40,10 @@ end
 ### Sample log
 
 ```ruby
-Rails.logger.info "foobar" # => level:INFO   time:2015-08-05 00:44:31 +0900  msg:foobar
-Rails.logger.info id: 123, name: "alice" # => level:INFO   time:2015-08-05 00:46:56 +0900  id:123  name:alice
+Rails.logger.info "foobar" # => level:INFO      time:2015-08-05 12:55:25 +0900  uuid:958125fc-4f35-4f45-9eef-046fece2dfc2       msg:foobar
+
+
+Rails.logger.info id: 123, name: "alice" # => level:INFO      time:2015-08-05 12:56:03 +0900  uuid:26bd133e-94b2-450d-9ad5-1855c7649ccd       id:123  name:alice
 ```
 
 ## Contributing
