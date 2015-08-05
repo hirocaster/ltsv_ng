@@ -1,6 +1,7 @@
 require_relative "spec_helper"
 
 describe "LtsvNg::Logger" do
+  let(:time) { Time.now }
   before do
     @output = StringIO.new
     @logger = LtsvNg::Logger.new(@output)
@@ -20,6 +21,7 @@ describe "LtsvNg::Logger" do
       @output.seek(0)
       ltsv = @output.read.strip.split("\t")
       expect(ltsv).to include("level:INFO")
+      expect(ltsv).to include("time:#{time}")
       expect(ltsv).to include("uuid:b746d58e-e4c0-4f2b-86fd-f8ff78131745")
       expect(ltsv).to include("msg:Test")
     end
@@ -29,6 +31,7 @@ describe "LtsvNg::Logger" do
       @output.seek(0)
       ltsv = @output.read.strip.split("\t")
       expect(ltsv).to include("level:INFO")
+      expect(ltsv).to include("time:#{time}")
       expect(ltsv).to include("id:123")
       expect(ltsv).to include("uuid:b746d58e-e4c0-4f2b-86fd-f8ff78131745")
       expect(ltsv).to include("name:foobar")
