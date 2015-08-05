@@ -96,3 +96,4 @@ RSpec.configure do |config|
 end
 
 require "ltsv_ng"
+require "timecop"
