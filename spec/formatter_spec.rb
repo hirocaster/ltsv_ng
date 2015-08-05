@@ -20,5 +20,12 @@ describe "LtsvNg::Formatter" do
         expect(text).to eq "level:INFO\ttime:#{time}\tuuid:b746d58e-e4c0-4f2b-86fd-f8ff78131745\tid:123\tname:foobar\n"
       end
     end
+
+    context "Duplicate default hash key " do
+      it "returns changed key text" do
+        text =  formatter.call("INFO", time, nil, { id: 123, name: "foobar", time: 456})
+        expect(text).to eq "level:INFO\ttime:#{time}\tuuid:b746d58e-e4c0-4f2b-86fd-f8ff78131745\tid:123\tname:foobar\tdup_time:456\n"
+      end
+    end
   end
 end

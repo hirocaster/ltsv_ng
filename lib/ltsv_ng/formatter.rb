@@ -1,14 +1,21 @@
 module LtsvNg
   class Formatter < ::Logger::Formatter
     def call(severity, timestamp, progname, msg)
-      raws = ["level:#{ severity }", "time:#{ timestamp }", "uuid:#{ SecureRandom.uuid }"]
+      raws = { level: severity, time: timestamp, uuid: SecureRandom.uuid }
       case msg
       when Hash
-        raws = msg.inject(raws) { |h, (key, value)| h << "#{key}:#{value}"; h }
+        msg.each do |key, value|
+          if raws.has_key? key
+            raws["dup_#{key}".to_sym] = value
+          else
+            raws[key] = value
+          end
+        end
       when String
-        raws << "msg:#{ msg }"
+        raws[:msg] = msg
       end
-      "#{raws.join("\t")}\n"
+
+      raws.inject(Array.new) { |h, (key, value)| h << "#{key}:#{value}" }.join("\t") + "\n"
     end
   end
 end
