@@ -2,6 +2,8 @@
 
 [LTSV](http://ltsv.org/) logger for Ruby application.
 
+[![Build Status](https://travis-ci.org/hirocaster/ltsv_ng.svg)](https://travis-ci.org/hirocaster/ltsv_ng)
+
 ## Installation
 
 Add this line to your application's Gemfile:
