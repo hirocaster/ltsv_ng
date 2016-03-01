@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ### for Rails
 
-in `config/environments/production.rb`
+in `config/environment.rb`
 
 ```ruby
 Rails.application.configure do
